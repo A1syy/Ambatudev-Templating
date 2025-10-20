@@ -1,0 +1,29 @@
+---
+---
+
+<button
+        id="theme-toggle"
+        type="button"
+        class="p-2 rounded-full border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        onclick="toggleTheme()"
+>
+    <span id="theme-icon" class="text-xl">🌞</span>
+</button>
+
+<script is:inline>
+    function toggleTheme() {
+        const isDark = document.documentElement.classList.contains('dark');
+        const nextTheme = isDark ? 'light' : 'dark';
+        window.setTheme(nextTheme);
+
+        const icon = document.getElementById('theme-icon');
+        icon.textContent = nextTheme === 'dark' ? '🌙' : '🌞';
+    }
+
+    // Atur ikon sesuai tema awal
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.addEventListener('DOMContentLoaded', () => {
+        const icon = document.getElementById('theme-icon');
+        icon.textContent = currentTheme === 'dark' ? '🌙' : '🌞';
+    });
+</script>

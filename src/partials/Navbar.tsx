@@ -1,10 +1,4 @@
-import {
-  Logo,
-  NavbarTwoColumns,
-  NavMenu,
-  NavMenuItem,
-  Section,
-} from 'astro-boilerplate-components';
+import { Logo, NavbarTwoColumns, Section } from 'astro-boilerplate-components';
 
 const Navbar = () => (
   <Section>
@@ -32,11 +26,26 @@ const Navbar = () => (
         />
       </a>
 
-      <NavMenu>
-        <NavMenuItem href="/posts/">Blogs</NavMenuItem>
-        <NavMenuItem href="/">GitHub</NavMenuItem>
-        <NavMenuItem href="/">Twitter</NavMenuItem>
-      </NavMenu>
+      <div className="flex items-center space-x-6 text-gray-800 transition-colors duration-300 dark:text-gray-100">
+        <a
+          href="/posts/"
+          className="transition-colors hover:text-cyan-600 dark:hover:text-cyan-400"
+        >
+          Blogs
+        </a>
+        <a
+          href="/"
+          className="transition-colors hover:text-cyan-600 dark:hover:text-cyan-400"
+        >
+          GitHub
+        </a>
+        <a
+          href="/"
+          className="transition-colors hover:text-cyan-600 dark:hover:text-cyan-400"
+        >
+          Twitter
+        </a>
+      </div>
     </NavbarTwoColumns>
   </Section>
 );
