@@ -8,12 +8,12 @@ const FeaturedProducts = () => {
   return (
     <section className="container mx-auto px-4 py-16">
       <div className="mb-8 flex items-center justify-between">
-        <h2 className="text-3xl font-bold text-gray-900">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
           Featured <GradientText>Products</GradientText>
         </h2>
         <a
           href="/products"
-          className="flex items-center gap-1 font-medium text-indigo-600 transition hover:text-indigo-800"
+          className="flex items-center gap-1 font-medium text-indigo-600 transition hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300"
         >
           View all
           <svg
@@ -37,7 +37,7 @@ const FeaturedProducts = () => {
         {products.map((product) => (
           <div
             key={product.id}
-            className="group relative overflow-hidden rounded-lg bg-white shadow-sm transition-shadow duration-300 hover:shadow-md"
+            className="group relative overflow-hidden rounded-lg bg-white shadow-sm transition-shadow duration-300 hover:shadow-md dark:bg-gray-800"
           >
             <a
               href={`/product/${product.id}`}
@@ -51,24 +51,24 @@ const FeaturedProducts = () => {
             </a>
 
             <div className="p-4">
-              <div className="mb-1 text-xs uppercase tracking-wide text-gray-500">
+              <div className="mb-1 text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
                 {product.category}
               </div>
 
-              <h3 className="mb-1 text-lg font-medium leading-tight text-gray-900">
+              <h3 className="mb-1 text-lg font-medium leading-tight text-gray-900 dark:text-gray-100">
                 <a
                   href={`/product/${product.id}`}
-                  className="transition-colors hover:text-indigo-600"
+                  className="transition-colors hover:text-indigo-600 dark:hover:text-indigo-400"
                 >
                   {product.name}
                 </a>
               </h3>
 
               <div className="mt-2 flex items-center justify-between">
-                <span className="font-bold text-gray-900">
+                <span className="font-bold text-gray-900 dark:text-gray-100">
                   ${product.price.toFixed(2)}
                 </span>
-                <button className="rounded-md border border-gray-300 px-4 py-2 text-sm opacity-0 transition-opacity hover:bg-gray-50 group-hover:opacity-100">
+                <button className="rounded-md border border-gray-300 px-4 py-2 text-sm opacity-0 transition-opacity hover:bg-gray-50 group-hover:opacity-100 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
                   View Details
                 </button>
               </div>

@@ -38,12 +38,12 @@ const CategorySection = () => {
   };
 
   return (
-    <section className="bg-gray-50 py-16">
+    <section className="bg-gray-50 py-16 transition-colors duration-300 dark:bg-gray-900">
       <div className="container mx-auto px-4">
-        <h2 className="mb-3 text-center text-3xl font-bold text-gray-900">
+        <h2 className="mb-3 text-center text-3xl font-bold text-gray-900 dark:text-gray-100">
           Shop by Category
         </h2>
-        <p className="mx-auto mb-10 max-w-2xl text-center text-gray-600">
+        <p className="mx-auto mb-10 max-w-2xl text-center text-gray-600 dark:text-gray-400">
           Browse our collections and find the perfect products for your needs.
         </p>
 
@@ -52,7 +52,7 @@ const CategorySection = () => {
             <a
               key={category}
               href={`/products?category=${category}`}
-              className="group relative h-72 overflow-hidden rounded-lg shadow-md transition-transform hover:scale-[1.01]"
+              className="group relative h-72 overflow-hidden rounded-lg shadow-md transition-transform hover:scale-[1.01] dark:shadow-gray-800"
             >
               <img
                 src={
@@ -72,7 +72,7 @@ const CategorySection = () => {
                       ?.description
                   }
                 </p>
-                <span className="mt-3 flex items-center text-sm font-medium text-indigo-300">
+                <span className="mt-3 flex items-center text-sm font-medium text-indigo-300 dark:text-indigo-400">
                   Explore
                   <svg
                     className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"
