@@ -5,6 +5,7 @@ import { CTA } from '@/partials/CTA';
 import { Hero } from '@/partials/Hero';
 import { ProjectList } from '@/partials/ProjectList';
 import { RecentPosts } from '@/partials/RecentPosts';
+import CategorySection from "@/partials/CategorySection";
 import { Sponsors } from '@/partials/Sponsors';
 import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
@@ -22,6 +23,7 @@ const { description } = AppConfig;
   <Hero />
   <Sponsors />
   <ProjectList />
+  <CategorySection />
   <RecentPosts postList={lastThreePosts} />
   <CTA />
 </Base>
