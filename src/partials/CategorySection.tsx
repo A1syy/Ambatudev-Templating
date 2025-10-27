@@ -51,7 +51,7 @@ const CategorySection = () => {
           {categories.map((category) => (
             <a
               key={category}
-              href={`/products?category=${category}`}
+              href={`/product/?category=${category}`}
               className="group relative h-72 overflow-hidden rounded-lg shadow-md transition-transform hover:scale-[1.01] dark:shadow-gray-800"
             >
               <img

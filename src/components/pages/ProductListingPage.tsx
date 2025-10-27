@@ -52,8 +52,18 @@ const ProductListingPage: React.FC = () => {
   // Handle filtering and sorting
   useEffect(() => {
     let result = [...products];
-    if (selectedCategory) result = getProductsByCategory(selectedCategory);
-    if (searchQuery) result = searchProducts(searchQuery);
+    if (selectedCategory) {
+      result = getProductsByCategory(selectedCategory);
+    }
+    if (searchQuery) {
+      result = searchProducts(searchQuery);
+    }
+
+    // Add price filtering
+    result = result.filter(
+      (product) =>
+        product.price >= priceRange.min && product.price <= priceRange.max
+    );
 
     switch (sortBy) {
       case 'price-low':
@@ -158,28 +168,43 @@ const ProductListingPage: React.FC = () => {
                 ))}
               </div>
             </div>
-
             {/* Price Range */}
             <div className="mb-6">
               <h3 className="mb-2 font-medium text-gray-800 dark:text-gray-200">
                 Price Range
               </h3>
-              <div className="flex items-center space-x-2 text-gray-700 dark:text-gray-300">
-                <span>${priceRange.min}</span>
-                <input
-                  type="range"
-                  min={priceRange.min}
-                  max={priceRange.max}
-                  value={priceRange.max}
-                  onChange={(e) =>
-                    setPriceRange({
-                      ...priceRange,
-                      max: Number(e.target.value),
-                    })
-                  }
-                  className="w-full accent-indigo-500"
-                />
-                <span>${priceRange.max}</span>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-700 dark:text-gray-300">
+                    ${priceRange.min}
+                  </span>
+                  <span className="text-sm text-gray-700 dark:text-gray-300">
+                    ${priceRange.max}
+                  </span>
+                </div>
+                <div className="space-y-4">
+                  <input
+                    type="range"
+                    min={
+                      products.length
+                        ? Math.min(...products.map((p) => p.price))
+                        : 0
+                    }
+                    max={
+                      products.length
+                        ? Math.max(...products.map((p) => p.price))
+                        : 1000
+                    }
+                    value={priceRange.min}
+                    onChange={(e) =>
+                      setPriceRange((prev) => ({
+                        ...prev,
+                        min: Math.min(Number(e.target.value), prev.max),
+                      }))
+                    }
+                    className="w-full accent-indigo-500"
+                  />
+                </div>
               </div>
             </div>
 
