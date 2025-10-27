@@ -11,6 +11,7 @@ import { FeaturedProducts } from '@/partials/FeaturedProducts';
 import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
+import { Footer2 } from '@/partials/Footer2';
 
 const allPosts = await Astro.glob<IFrontmatter>('./posts/*.md');
 const sortedPosts = sortByDate(allPosts);
@@ -21,11 +22,6 @@ const { description } = AppConfig;
 ---
 
 <Base head={{ title, description }}>
-  <Hero />
-  <Sponsors />
   <FeaturedProducts />
   <CategorySection />
-  <ProjectList />
-  <RecentPosts postList={lastThreePosts} />
-  <CTA />
 </Base>

@@ -1,6 +1,6 @@
 import { GradientText } from 'astro-boilerplate-components';
 
-import { getFeaturedProducts } from '@/data/products';
+import { getFeaturedProducts } from '../services/productService';
 
 const FeaturedProducts = () => {
   const products = getFeaturedProducts().slice(0, 4);

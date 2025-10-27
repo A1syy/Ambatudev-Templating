@@ -28,12 +28,19 @@ const Navbar = () => (
 
       <div className="flex items-center space-x-6 text-gray-800 transition-colors duration-300 dark:text-gray-100">
         <a
+          href="/"
+          className="transition-colors hover:text-cyan-600 dark:hover:text-cyan-400"
+        >
+          Home
+        </a>
+        <a
           href="/posts/"
           className="transition-colors hover:text-cyan-600 dark:hover:text-cyan-400"
         >
           Blogs
         </a>
-        <a
+
+        {/* <a
           href="/"
           className="transition-colors hover:text-cyan-600 dark:hover:text-cyan-400"
         >
@@ -44,6 +51,12 @@ const Navbar = () => (
           className="transition-colors hover:text-cyan-600 dark:hover:text-cyan-400"
         >
           Twitter
+        </a> */}
+        <a
+          href="/product/"
+          className="transition-colors hover:text-cyan-600 dark:hover:text-cyan-400"
+        >
+          Product
         </a>
       </div>
     </NavbarTwoColumns>

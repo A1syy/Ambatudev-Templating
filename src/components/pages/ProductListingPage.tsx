@@ -93,7 +93,7 @@ const ProductListingPage: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-24 text-gray-900 transition-colors duration-300 dark:text-gray-100">
+    <div className="container mx-auto px-4 text-gray-900 transition-colors duration-300 dark:text-gray-100">
       <div className="flex flex-col gap-8 md:flex-row">
         {/* Mobile Filters Toggle */}
         <div className="w-full md:hidden">
@@ -224,7 +224,7 @@ const ProductListingPage: React.FC = () => {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none rounded-md border border-gray-300 bg-white py-2 pl-3 pr-8 text-gray-900 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
+                  className="appearance-none rounded-md border border-gray-300 bg-white py-2 pl-3 pr-8 text-gray-900 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-400 dark:bg-gray-800 dark:text-gray-100"
                 >
                   <option value="featured">Featured</option>
                   <option value="price-low">Price: Low to High</option>
