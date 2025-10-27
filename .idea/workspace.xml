@@ -5,9 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b55e07f-db4e-4ce8-b1f2-b2862e9540a3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/partials/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/partials/Navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/Base.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/Base.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/ProductListingPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/products/ProductCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/products/ProductGrid.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/Button.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/Input.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/contexts/CartContext.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/products.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/users.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/product.astro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/productService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/storage.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,14 +53,25 @@
   &quot;keyToString&quot;: {
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;template__generate&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/jelang_wsl/Ambatudev-Templating/src/utils&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\jelang_wsl\\Ambatudev-Templating\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\jelang_wsl\Ambatudev-Templating\src\utils" />
+      <recent name="D:\jelang_wsl\Ambatudev-Templating\src\services" />
+      <recent name="D:\jelang_wsl\Ambatudev-Templating\src\components\ui" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\jelang_wsl\Ambatudev-Templating\src\components\pages" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -68,6 +91,8 @@
       <workItem from="1760887517131" duration="4088000" />
       <workItem from="1760929723089" duration="1037000" />
       <workItem from="1760932923495" duration="6135000" />
+      <workItem from="1761494817442" duration="5306000" />
+      <workItem from="1761537667135" duration="1021000" />
     </task>
     <servers />
   </component>
