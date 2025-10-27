@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Button from '../ui/Button';
+import pkg from 'react-router-dom';
+const { Link } = pkg;
+import Button from '@/components/ui/Button';
 
-const Hero: React.FC = () => {
+const Hero2: React.FC = () => {
   return (
     <section className="relative bg-gray-900 text-white overflow-hidden">
       {/* Background Image with Overlay */}
@@ -26,7 +27,7 @@ const Hero: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button 
-              as={Link} 
+              as={Link}
               to="/products" 
               size="lg"
               className="px-8 inline-block"
@@ -34,7 +35,7 @@ const Hero: React.FC = () => {
               Shop Now
             </Button>
             <Button 
-              as={Link} 
+              as={Link}
               to="/about" 
               variant="outline" 
               size="lg"
@@ -68,4 +69,4 @@ const Hero: React.FC = () => {
   );
 };
 
-export default Hero;
+export default Hero2;
