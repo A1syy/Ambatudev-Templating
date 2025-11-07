@@ -9,6 +9,7 @@ import { sortByDate } from '@/utils/Posts';
 import Hero2 from '@/partials/Hero2';
 import Newsletter from '@/partials/Newsletter';
 import Testimonials from "@/partials/Testimonials";
+import { CTA } from '@/partials/CTA';
 
 
 const allPosts = await Astro.glob<IFrontmatter>('./posts/*.md');
@@ -24,4 +25,5 @@ const { description } = AppConfig;
   <CategorySection />
   <Testimonials />
   <Newsletter />
+  <CTA />
 </Base>
