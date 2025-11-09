@@ -1,0 +1,11 @@
+---
+import Base from '@/templates/Base.astro';
+import ProductListingPage from '../components/pages/ProductListingPage'; // sesuaikan path-nya
+---
+
+<Base head={{ title: 'Products', description: 'Explore our products' }}>
+    <div class="">
+        <!-- Render React component -->
+        <ProductListingPage client:load />
+    </div>
+</Base>
