@@ -4,24 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b55e07f-db4e-4ce8-b1f2-b2862e9540a3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/partials/Hero2.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/partials/Newsletter.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/partials/Testimonials.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/components/home/Hero.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/home/Hero.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.astro" afterDir="false" />
-    </list>
+    <list default="true" id="7a10cf16-595c-4f7a-8782-c520fb4f006a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Ambatudev-Templating" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -29,6 +19,31 @@
     &quot;assignee&quot;: &quot;JelangA&quot;
   }
 }</component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="template_generate" />
+                    <option name="lastUsedInstant" value="1762718044" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1762718043" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/Ambatudev-Templating" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;git@github.com:A1syy/Ambatudev-Templating.git&quot;,
@@ -36,39 +51,30 @@
   }
 }</component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
+  &quot;associatedIndex&quot;: 8
 }</component>
-  <component name="ProjectId" id="34Hz8hL55jwtxa5zmQQJfP10HXU" />
+  <component name="ProjectId" id="35FrmSN5cvclAFPdcot7SFw9fMZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;template__generate&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/jelang_wsl/Ambatudev-Templating/src/partials&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\jelang_wsl\\Ambatudev-Templating\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "template__generate",
+    "last_opened_file_path": "D:/jelang_wsl/WengMerce",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\jelang_wsl\Ambatudev-Templating\src\partials" />
-      <recent name="D:\jelang_wsl\Ambatudev-Templating\src\pages" />
-      <recent name="D:\jelang_wsl\Ambatudev-Templating\src\utils" />
-      <recent name="D:\jelang_wsl\Ambatudev-Templating\src\services" />
-      <recent name="D:\jelang_wsl\Ambatudev-Templating\src\components\ui" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\jelang_wsl\Ambatudev-Templating\src\partials" />
-      <recent name="D:\jelang_wsl\Ambatudev-Templating\src\components\pages" />
+      <recent name="D:\jelang_wsl\WengMerce" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -81,18 +87,13 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8b55e07f-db4e-4ce8-b1f2-b2862e9540a3" name="Changes" comment="" />
-      <created>1760885134796</created>
+      <changelist id="7a10cf16-595c-4f7a-8782-c520fb4f006a" name="Changes" comment="" />
+      <created>1762716821089</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1760885134796</updated>
-      <workItem from="1760885139557" duration="2280000" />
-      <workItem from="1760887517131" duration="4088000" />
-      <workItem from="1760929723089" duration="1037000" />
-      <workItem from="1760932923495" duration="6135000" />
-      <workItem from="1761494817442" duration="5306000" />
-      <workItem from="1761537667135" duration="5646000" />
-      <workItem from="1761550329180" duration="858000" />
+      <updated>1762716821089</updated>
+      <workItem from="1762716822345" duration="4617000" />
+      <workItem from="1762721658730" duration="1279000" />
     </task>
     <servers />
   </component>

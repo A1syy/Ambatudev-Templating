@@ -10,13 +10,12 @@ const productSchema = Joi.object({
   imageGallery: Joi.array().items(Joi.string().uri()).optional(),
   stock: Joi.number().integer().required().min(0),
   rating: Joi.number().min(0).max(5).optional(),
-  specs: Joi.object({
-    brand: Joi.string().required(),
-    connectivity: Joi.string().optional(),
-    batteryLife: Joi.string().optional(),
-    weight: Joi.string().optional(),
-    color: Joi.string().required(),
-  }).optional(),
+  specs: Joi.object()
+      .pattern(
+          Joi.string(), // key bebas
+          Joi.alternatives().try(Joi.string(), Joi.string()) // value string/number
+      )
+      .optional(),
 });
 
 const validateProduct = (req, res, next) => {

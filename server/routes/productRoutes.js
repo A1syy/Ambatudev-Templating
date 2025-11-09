@@ -11,6 +11,7 @@ router.get('/:id', productController.getProductById);
 
 // Protected routes
 router.post('/', verifyToken, validateProduct, productController.createProduct);
+// router.post('/bulk', verifyToken, productController.createManyProducts);
 router.put(
   '/:id',
   verifyToken,

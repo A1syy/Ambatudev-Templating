@@ -61,6 +61,42 @@ class ProductController {
       });
     }
   }
+  // Create multiple products
+  async createManyProducts(req, res) {
+    try {
+      const products = req.body;
+
+      if (!Array.isArray(products)) {
+        return res.status(400).json({
+          error: 'Bad Request',
+          message: 'Expected an array of products',
+        });
+      }
+
+      const created = [];
+
+      for (const product of products) {
+        const response = await axios.post(
+            `${process.env.FIREBASE_URL}/products.json`,
+            product
+        );
+        created.push({
+          id: response.data.name,
+          ...product,
+        });
+      }
+
+      res.status(201).json({
+        message: `${created.length} products created successfully`,
+        products: created,
+      });
+    } catch (error) {
+      res.status(500).json({
+        error: 'Internal Server Error',
+        message: error.message,
+      });
+    }
+  }
 
   // Create new product
   async createProduct(req, res) {
