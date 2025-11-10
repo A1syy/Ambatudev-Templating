@@ -13,7 +13,7 @@ import {
 } from "../lib/auth";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
-const API = `${BACKEND_URL}`;
+const API = `http://20.2.235.234:5000`;
 
 const Dashboard = () => {
   const [products, setProducts] = useState([]);
@@ -24,17 +24,14 @@ const Dashboard = () => {
   const [deleteProduct, setDeleteProduct] = useState(null);
   const [activeTab, setActiveTab] = useState("products");
 
-  // protect route and set auth header
+  // Protect route and set auth header
   useEffect(() => {
     if (!isAuthenticated()) {
       logoutAndRedirect();
       return;
     }
-
-    // set default Authorization header for axios
     setAxiosAuthHeader(axios);
 
-    // global axios interceptor to catch 401/403 and logout
     const interceptor = axios.interceptors.response.use(
       (resp) => resp,
       (error) => {
@@ -47,18 +44,23 @@ const Dashboard = () => {
       }
     );
 
-    return () => {
-      axios.interceptors.response.eject(interceptor);
-    };
+    return () => axios.interceptors.response.eject(interceptor);
   }, []);
 
-  // Fetch products
+  // Fetch products and extract categories from response
   const fetchProducts = async () => {
     try {
       setLoading(true);
       const response = await axios.get(`${API}/product`);
-      console.log("Fetched products:", response.data);
-      setProducts(response.data);
+      const data = response.data;
+
+      setProducts(data);
+
+      // Extract unique categories directly from products
+      const uniqueCategories = Array.from(
+        new Set(data.map((product) => product.category))
+      );
+      setCategories(uniqueCategories);
     } catch (error) {
       console.error("Error fetching products:", error);
       toast.error("Failed to load products");
@@ -67,19 +69,8 @@ const Dashboard = () => {
     }
   };
 
-  // Fetch categories
-  const fetchCategories = async () => {
-    try {
-      const response = await axios.get(`${API}/categories`);
-      setCategories(response.data.categories);
-    } catch (error) {
-      console.error("Error fetching categories:", error);
-    }
-  };
-
   useEffect(() => {
     fetchProducts();
-    fetchCategories();
   }, []);
 
   // Handle create product
@@ -98,17 +89,14 @@ const Dashboard = () => {
   const handleSave = async (productData) => {
     try {
       if (selectedProduct) {
-        // Update existing product
         await axios.put(`${API}/product/${selectedProduct.id}`, productData);
         toast.success("Product updated successfully");
       } else {
-        // Create new product
         await axios.post(`${API}/product`, productData);
         toast.success("Product created successfully");
       }
       setIsModalOpen(false);
       fetchProducts();
-      fetchCategories();
     } catch (error) {
       console.error("Error saving product:", error);
       toast.error("Failed to save product");
@@ -122,7 +110,6 @@ const Dashboard = () => {
       toast.success("Product deleted successfully");
       setDeleteProduct(null);
       fetchProducts();
-      fetchCategories();
     } catch (error) {
       console.error("Error deleting product:", error);
       toast.error("Failed to delete product");
@@ -130,10 +117,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div
-      className="flex h-screen overflow-hidden bg-gray-50"
-      data-testid="admin-dashboard"
-    >
+    <div className="flex h-screen overflow-hidden bg-gray-50" data-testid="admin-dashboard">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <div className="flex-1 flex flex-col overflow-hidden">
@@ -151,34 +135,21 @@ const Dashboard = () => {
           )}
 
           {activeTab === "analytics" && (
-            <div
-              className="bg-white rounded-xl shadow-sm p-8 text-center"
-              data-testid="analytics-section"
-            >
-              <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-                Analytics Dashboard
-              </h2>
+            <div className="bg-white rounded-xl shadow-sm p-8 text-center" data-testid="analytics-section">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-2">Analytics Dashboard</h2>
               <p className="text-gray-500">Analytics features coming soon...</p>
             </div>
           )}
 
           {activeTab === "users" && (
-            <div
-              className="bg-white rounded-xl shadow-sm p-8 text-center"
-              data-testid="users-section"
-            >
-              <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-                User Management
-              </h2>
-              <p className="text-gray-500">
-                User management features coming soon...
-              </p>
+            <div className="bg-white rounded-xl shadow-sm p-8 text-center" data-testid="users-section">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-2">User Management</h2>
+              <p className="text-gray-500">User management features coming soon...</p>
             </div>
           )}
         </main>
       </div>
 
-      {/* Product Modal */}
       <ProductModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -187,7 +158,6 @@ const Dashboard = () => {
         categories={categories}
       />
 
-      {/* Delete Confirmation */}
       <DeleteConfirmation
         isOpen={!!deleteProduct}
         productName={deleteProduct?.name}
@@ -199,3 +169,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+

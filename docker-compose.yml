@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./server
+    container_name: backend-wengmerce
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    env_file:
+      - ./server/.env
+    networks:
+      - appnet
+    command: ["node", "server.js"]
+
+  frontend:
+    build: ./frontend
+    container_name: frontend-wengmerce
+    ports:
+      - "8080:80"   # host:container
+    networks:
+      - appnet
+
+  admin:
+    build: ./admin
+    container_name: admin-wengmerce
+    ports:
+      - "3000:80"   # host:container
+    networks:
+      - appnet
+    depends_on:
+      - backend
+
+networks:
+  appnet:
+    driver: bridge
+

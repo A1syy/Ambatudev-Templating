@@ -5,7 +5,7 @@ import axios from "axios";
 import { setAxiosAuthHeader } from "@/lib/auth";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
-const API_LOGIN = `${BACKEND_URL}/auth/login`;
+const API_LOGIN = `http://20.2.235.234:5000/auth/login`;
 
 function decodeJwt(token) {
   try {

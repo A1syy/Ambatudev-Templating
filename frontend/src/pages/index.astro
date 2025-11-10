@@ -21,8 +21,8 @@ const { description } = AppConfig;
 
 <Base head={{ title, description }}>
   <Hero2 />
-  <FeaturedProducts />
-  <CategorySection />
+  <FeaturedProducts client:load />
+  <CategorySection client:load />
   <Testimonials />
   <Newsletter />
   <CTA />
