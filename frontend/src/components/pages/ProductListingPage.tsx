@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-import ProductGrid from '@/components/products/ProductGrid';
-import Button from '@/components/ui/Button';
-import Input from '@/components/ui/Input';
+import ProductGrid from '../products/ProductGrid';
+import Button from '../ui/Button';
+import Input from '../ui/Input';
 import {
   getAllProducts,
   getCategories,
-  getProductsByCategory,
-  searchProducts,
-} from '@/services/productService';
-import type { Product } from '@/utils/types';
+} from '../../services/productService';
+import type { Product } from '../../utils/types';
 
 const ProductListingPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -37,34 +35,67 @@ const ProductListingPage: React.FC = () => {
 
   // Initialize data
   useEffect(() => {
-    const allProducts = getAllProducts();
-    setProducts(allProducts);
-    setCategories(getCategories());
+    const fetchData = async () => {
+      try {
+        console.log('Fetching products and categories...');
+        const [productsData, categoriesData] = await Promise.all([
+          getAllProducts(),
+          getCategories()
+        ]);
+        
+        console.log('Products received:', productsData);
+        console.log('Categories received:', categoriesData);
 
-    if (allProducts.length > 0) {
-      const prices = allProducts.map((p) => p.price);
-      const minPrice = Math.floor(Math.min(...prices));
-      const maxPrice = Math.ceil(Math.max(...prices));
-      setPriceRange({ min: minPrice, max: maxPrice });
-    }
+        if (productsData && Array.isArray(productsData)) {
+          setProducts(productsData);
+          setFilteredProducts(productsData);
+          
+          if (productsData.length > 0) {
+            const prices = productsData.map((p: Product) => p.price);
+            const minPrice = Math.floor(Math.min(...prices));
+            const maxPrice = Math.ceil(Math.max(...prices));
+            setPriceRange({ min: minPrice, max: maxPrice });
+          }
+        }
+
+        if (categoriesData && Array.isArray(categoriesData)) {
+          const uniqueCategories = Array.from(new Set(categoriesData.map(cat => cat.toLowerCase())));
+          setCategories(uniqueCategories);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   // Handle filtering and sorting
   useEffect(() => {
     let result = [...products];
+    
+    // Apply category filter
     if (selectedCategory) {
-      result = getProductsByCategory(selectedCategory);
-    }
-    if (searchQuery) {
-      result = searchProducts(searchQuery);
+      result = result.filter(product => product.category.toLowerCase() === selectedCategory.toLowerCase());
     }
 
-    // Add price filtering
+    // Apply search filter
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      result = result.filter(
+        product =>
+          product.name.toLowerCase().includes(query) ||
+          product.description.toLowerCase().includes(query)
+      );
+    }
+
+    // Apply price filter
     result = result.filter(
       (product) =>
         product.price >= priceRange.min && product.price <= priceRange.max
     );
 
+    // Apply sorting
     switch (sortBy) {
       case 'price-low':
         result.sort((a, b) => a.price - b.price);
@@ -76,13 +107,14 @@ const ProductListingPage: React.FC = () => {
         result.sort((a, b) => a.name.localeCompare(b.name));
         break;
       case 'rating':
-        result.sort((a, b) => b.rating - a.rating);
+        result.sort((a, b) => ((b.rating ?? 0) - (a.rating ?? 0)));
         break;
       default:
         result.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
     }
+
     setFilteredProducts(result);
-  }, [products, selectedCategory, searchQuery, sortBy]);
+  }, [products, selectedCategory, searchQuery, sortBy, priceRange]);
 
   // Update URL query string tanpa reload
   useEffect(() => {
