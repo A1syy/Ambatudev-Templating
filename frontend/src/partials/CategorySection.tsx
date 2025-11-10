@@ -1,7 +1,24 @@
+import { useState, useEffect } from 'react';
 import { getCategories } from '@/services/productService';
 
 const CategorySection = () => {
-  const categories = getCategories();
+  const [categories, setCategories] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        setIsLoading(true);
+        const result = await getCategories();
+        setCategories(result);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   // Map category names to images and descriptions
   const categoryDetails = {
@@ -48,7 +65,20 @@ const CategorySection = () => {
         </p>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.map((category) => (
+          {isLoading ? (
+            Array(6).fill(null).map((_, index) => (
+              <div
+                key={`skeleton-${index}`}
+                className="animate-pulse rounded-lg bg-gray-200 dark:bg-gray-700"
+                style={{ height: '288px' }}
+              />
+            ))
+          ) : categories.length === 0 ? (
+            <div className="col-span-full text-center text-gray-500 dark:text-gray-400">
+              No categories available
+            </div>
+          ) : (
+            categories.map((category) => (
             <a
               key={category}
               href={`/product/?category=${category}`}
@@ -91,7 +121,8 @@ const CategorySection = () => {
                 </span>
               </div>
             </a>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </section>

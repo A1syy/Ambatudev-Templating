@@ -1,61 +1,101 @@
-import productsData from '../data/products.json';
+import { API_URL } from '../utils/config';
 import type { Product } from '../utils/types';
 
 /**
  * Get all products
- * @returns Array of all products
+ * @returns Promise of array of all products
  */
-export const getAllProducts = (): Product[] => {
-  return productsData.products;
+export const getAllProducts = async (): Promise<Product[]> => {
+  try {
+    const response = await fetch(`${API_URL}/product`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch products');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return [];
+  }
 };
 
 /**
  * Get featured products for the homepage
- * @returns Array of featured products
+ * @returns Promise of array of featured products
  */
-export const getFeaturedProducts = (): Product[] => {
-  return productsData.products.filter((product) => product.featured);
+export const getFeaturedProducts = async (): Promise<Product[]> => {
+  try {
+    const products = await getAllProducts();
+    return products.filter((product) => product.featured);
+  } catch (error) {
+    console.error('Error fetching featured products:', error);
+    return [];
+  }
 };
 
 /**
  * Get products by category
  * @param category The category to filter by
- * @returns Array of products in the specified category
+ * @returns Promise of array of products in the specified category
  */
-export const getProductsByCategory = (category: string): Product[] => {
-  return productsData.products.filter(
-    (product) => product.category === category
-  );
+export const getProductsByCategory = async (category: string): Promise<Product[]> => {
+  try {
+    const products = await getAllProducts();
+    return products.filter((product) => product.category === category);
+  } catch (error) {
+    console.error('Error fetching products by category:', error);
+    return [];
+  }
 };
 
 /**
  * Search products by name or description
  * @param query The search query
- * @returns Array of products matching the search query
+ * @returns Promise of array of products matching the search query
  */
-export const searchProducts = (query: string): Product[] => {
-  const lowerCaseQuery = query.toLowerCase();
-  return productsData.products.filter(
-    (product) =>
-      product.name.toLowerCase().includes(lowerCaseQuery) ||
-      product.description.toLowerCase().includes(lowerCaseQuery)
-  );
+export const searchProducts = async (query: string): Promise<Product[]> => {
+  try {
+    const products = await getAllProducts();
+    const lowerCaseQuery = query.toLowerCase();
+    return products.filter(
+      (product) =>
+        product.name.toLowerCase().includes(lowerCaseQuery) ||
+        product.description.toLowerCase().includes(lowerCaseQuery)
+    );
+  } catch (error) {
+    console.error('Error searching products:', error);
+    return [];
+  }
 };
 
 /**
  * Get a product by ID
  * @param id The product ID
- * @returns The product or undefined if not found
+ * @returns Promise of the product or undefined if not found
  */
-export const getProductById = (id: number): Product | undefined => {
-  return productsData.products.find((product) => product.id === id);
+export const getProductById = async (id: string): Promise<Product | undefined> => {
+  try {
+    const response = await fetch(`${API_URL}/product/${id}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch product');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching product:', error);
+    return undefined;
+  }
 };
 
 /**
- * Get unique product categories
- * @returns Array of unique categories
+ * Get all categories
+ * @returns Promise of array of unique categories
  */
-export const getCategories = (): string[] => {
-  const categories = productsData.products.map((product) => product.category);
-  return [...new Set(categories)];
+export const getCategories = async (): Promise<string[]> => {
+  try {
+    const products = await getAllProducts();
+    const categories = products.map((product: Product) => product.category);
+    return Array.from(new Set(categories));
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    return [];
+  }
 };
