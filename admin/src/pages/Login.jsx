@@ -13,7 +13,7 @@ export default function Login() {
     e.preventDefault();
     if (username === DUMMY_USER.username && password === DUMMY_USER.password) {
       localStorage.setItem("isLoggedIn", "true");
-      window.location.href = "/";
+      window.location.href = "/dashboard";
     } else {
       setError("Username atau password salah");
     }

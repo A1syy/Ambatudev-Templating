@@ -62,7 +62,7 @@ const ProductTable = ({ products, loading, onEdit, onDelete, onCreate }) => {
           <Table>
             <TableHeader>
               <TableRow className="bg-gray-50">
-                <TableHead className="w-20">ID</TableHead>
+                <TableHead className="hidden w-20">ID</TableHead>
                 <TableHead className="w-24">Image</TableHead>
                 <TableHead>Name</TableHead>
                 <TableHead>Price</TableHead>
@@ -80,7 +80,7 @@ const ProductTable = ({ products, loading, onEdit, onDelete, onCreate }) => {
                   data-testid={`product-row-${product.id}`}
                   className="hover:bg-gray-50"
                 >
-                  <TableCell className="font-mono text-xs text-gray-500">
+                  <TableCell className="hidden font-mono text-xs text-gray-500">
                     {product.id.slice(0, 8)}
                   </TableCell>
                   <TableCell>

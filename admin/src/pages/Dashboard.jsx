@@ -8,7 +8,7 @@ import DeleteConfirmation from "../components/DeleteConfirmation";
 import { toast } from "sonner";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
-const API = `${BACKEND_URL}/api`;
+const API = `${BACKEND_URL}`;
 
 const Dashboard = () => {
   const [products, setProducts] = useState([]);
@@ -23,7 +23,8 @@ const Dashboard = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${API}/products`);
+      const response = await axios.get(`${API}/product`);
+      console.log("Fetched products:", response.data);
       setProducts(response.data);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -65,11 +66,11 @@ const Dashboard = () => {
     try {
       if (selectedProduct) {
         // Update existing product
-        await axios.put(`${API}/products/${selectedProduct.id}`, productData);
+        await axios.put(`${API}/product/${selectedProduct.id}`, productData);
         toast.success("Product updated successfully");
       } else {
         // Create new product
-        await axios.post(`${API}/products`, productData);
+        await axios.post(`${API}/product`, productData);
         toast.success("Product created successfully");
       }
       setIsModalOpen(false);
@@ -84,7 +85,7 @@ const Dashboard = () => {
   // Handle delete confirmation
   const handleDeleteConfirm = async () => {
     try {
-      await axios.delete(`${API}/products/${deleteProduct.id}`);
+      await axios.delete(`${API}/product/${deleteProduct.id}`);
       toast.success("Product deleted successfully");
       setDeleteProduct(null);
       fetchProducts();
