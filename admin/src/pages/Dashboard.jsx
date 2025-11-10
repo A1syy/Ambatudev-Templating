@@ -6,8 +6,13 @@ import ProductTable from "../components/ProductTable";
 import ProductModal from "../components/ProductModal";
 import DeleteConfirmation from "../components/DeleteConfirmation";
 import { toast } from "sonner";
+import {
+  isAuthenticated,
+  setAxiosAuthHeader,
+  logoutAndRedirect,
+} from "../lib/auth";
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 const API = `${BACKEND_URL}`;
 
 const Dashboard = () => {
@@ -18,6 +23,34 @@ const Dashboard = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [deleteProduct, setDeleteProduct] = useState(null);
   const [activeTab, setActiveTab] = useState("products");
+
+  // protect route and set auth header
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      logoutAndRedirect();
+      return;
+    }
+
+    // set default Authorization header for axios
+    setAxiosAuthHeader(axios);
+
+    // global axios interceptor to catch 401/403 and logout
+    const interceptor = axios.interceptors.response.use(
+      (resp) => resp,
+      (error) => {
+        const status = error?.response?.status;
+        if (status === 401 || status === 403) {
+          toast.error("Session expired. Please login again.");
+          logoutAndRedirect();
+        }
+        return Promise.reject(error);
+      }
+    );
+
+    return () => {
+      axios.interceptors.response.eject(interceptor);
+    };
+  }, []);
 
   // Fetch products
   const fetchProducts = async () => {
@@ -97,12 +130,15 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-50" data-testid="admin-dashboard">
+    <div
+      className="flex h-screen overflow-hidden bg-gray-50"
+      data-testid="admin-dashboard"
+    >
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-      
+
       <div className="flex-1 flex flex-col overflow-hidden">
         <TopBar />
-        
+
         <main className="flex-1 overflow-y-auto p-6">
           {activeTab === "products" && (
             <ProductTable
@@ -113,18 +149,30 @@ const Dashboard = () => {
               onCreate={handleCreate}
             />
           )}
-          
+
           {activeTab === "analytics" && (
-            <div className="bg-white rounded-xl shadow-sm p-8 text-center" data-testid="analytics-section">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-2">Analytics Dashboard</h2>
+            <div
+              className="bg-white rounded-xl shadow-sm p-8 text-center"
+              data-testid="analytics-section"
+            >
+              <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                Analytics Dashboard
+              </h2>
               <p className="text-gray-500">Analytics features coming soon...</p>
             </div>
           )}
-          
+
           {activeTab === "users" && (
-            <div className="bg-white rounded-xl shadow-sm p-8 text-center" data-testid="users-section">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-2">User Management</h2>
-              <p className="text-gray-500">User management features coming soon...</p>
+            <div
+              className="bg-white rounded-xl shadow-sm p-8 text-center"
+              data-testid="users-section"
+            >
+              <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                User Management
+              </h2>
+              <p className="text-gray-500">
+                User management features coming soon...
+              </p>
             </div>
           )}
         </main>
