@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { setAxiosAuthHeader } from "@/lib/auth";
 
-const API_LOGIN = "http://localhost:5000/auth/login";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+const API_LOGIN = `${BACKEND_URL}/auth/login`;
 
 function decodeJwt(token) {
   try {
