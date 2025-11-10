@@ -9,7 +9,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, error, fullWidth = false, className = '', ...props }, ref) => {
     return (
-      <div className={`mb-4 ${fullWidth ? 'w-full' : ''}`}>
+      <div className={`${fullWidth ? 'w-full' : ''}`}>
         {label && (
           <label
             htmlFor={props.id}
