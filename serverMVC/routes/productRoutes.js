@@ -13,10 +13,10 @@ router.get('/:id', productController.getProductById);
 router.post('/', verifyToken, validateProduct, productController.createProduct);
 // router.post('/bulk', verifyToken, productController.createManyProducts);
 router.put(
-  '/:id',
-  verifyToken,
-  validateProduct,
-  productController.updateProduct
+    '/:id',
+    verifyToken,
+    validateProduct,
+    productController.updateProduct
 );
 router.delete('/:id', verifyToken, productController.deleteProduct);
 
